@@ -1,6 +1,7 @@
 # Introduction 
 This goal of this project is to create a model of an 8-Bit processor that can host an operating system. The following processor features will be implemented:
 * Basic logical operations (and, or, not, xor)
+* Basic comparison operations (Less-than, Equals)
 * Basic branching operations (jump non-conditional, conditional jump)
 * Basic memory access operations (read, write)
 * Protection Rings (such as real, for OS, and protected modes for programs)
