@@ -1,7 +1,20 @@
+# Introduction 
+This goal of this project is to create a model of an 8-Bit processor that can host an operating system. The following processor features will be implemented:
+* Basic logical operations (and, or, not, xor)
+* Basic branching operations (jump non-conditional, conditional jump)
+* Basic memory access operations (read, write)
+* Protection Rings (such as real, for OS, and protected modes for programs)
+* Segmentation (for code, data and stack in protected mode)
+* Paging (with 256 byte pages)
+* Interrupts
+
 # Register Map
 ![Register Map](https://docs.google.com/drawings/d/e/2PACX-1vSF-PthyUAP-zF97gdNV2D4nN0EQKxJt4iW48JPhNAF4zAdomu0ihIHaXag0rTDXatp69aeBcFj2l8z/pub?w=898&amp;h=1551)
 
 # Instruction Set
+
+The following instruction table is meant to be a short hand of the instructions. There is no description and interpretation can be ambiguous. No full documentation of the instruction set has yet been made. 
+
 | Code        | Operation                   | Short Name     | Equation             |
 | :---------- |:-------------               | :---------     | :---------           |
 | 00000000    | No Operation                | NOP            |                      |
