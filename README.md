@@ -43,7 +43,7 @@ The following instruction table is meant to be a short hand of the instructions.
 | 101000Dt    | Read Stack Pointer          | RSP            | SP → Dt              |
 | 101001Sc    | Write Stack Pointer         | RSP (real)     | SP ← Sc              |
 | 101010Gt    | Non-Conditional Jump (prot) | NCP (prot)     | PC ← Gt              |
-| 101011Gt    | Non-Conditional Jump (real) | NCP (real)     | PC ← Gt              |
+| 101011Gt    | Non-Conditional Jump (real) | NCR (real)     | PC ← Gt              |
 | 10110000    | Set CS (real)               | SCS (real)     | A  → CS              |
 | 10110001    | Set CE (real)               | SCE (real)     | A  → CE              |
 | 10110010    | Set DS (real)               | SDS (real)     | A  → DS              |
@@ -51,8 +51,8 @@ The following instruction table is meant to be a short hand of the instructions.
 | 10110100    | Set SS (real)               | SSS (real)     | A  → SS              |
 | 10110101    | Set SE (real)               | SSE (real)     | A  → SE              |
 | 10110110    | Not Used                    |                |                      |
-| 10110111    | Not Used                    |                |                      |
-| 10111000    | Get Amount of Memory        | GAM            | A  ← Max(MEM)        |
+| 10110111    | Get Amount of Memory        | GAM            | A  ← Max(MEM)        |
+| 10111000    | Not Used                    |                |                      |
 | 10111001    | Not Used                    |                |                      |
 | 10111010    | Not Used                    |                |                      |
 | 10111011    | Not Used                    |                |                      |
