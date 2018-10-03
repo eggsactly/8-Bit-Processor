@@ -60,6 +60,6 @@ The following instruction table is meant to be a short hand of the instructions.
 | 10111101    | Sofware Interrupt 1         | SW1            |                                    |
 | 10111110    | Sofware Interrupt 2         | SW2            |                                    |
 | 10111111    | Sofware Interrupt 3         | SW3            |                                    |
-| 11DtValu    | Set Value                   | SVL            | REG(Dt)[3:0] ← 000000000000Valu    |
+| 11DtValu    | Set Value                   | SVL            | REG(Dt) ← 000000000000Valu         |
 
 That's It!
