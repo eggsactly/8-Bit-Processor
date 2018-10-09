@@ -46,23 +46,29 @@ architecture behavioral of alu is
 
     begin
 
-    R <=    R_Assist & std_logic_vector(signed(A) + signed(B)) 
-                when Op = std_logic_vector(to_unsigned(0, Op'length)) else
-            R_Assist & std_logic_vector(not A)                 
-                when Op = std_logic_vector(to_unsigned(1, Op'length)) else
-            R_Assist & std_logic_vector(A and B)               
-                when Op = std_logic_vector(to_unsigned(2, Op'length)) else
-            R_Assist & std_logic_vector(A or B)                
-                when Op = std_logic_vector(to_unsigned(3, Op'length)) else
-            R_Assist & std_logic_vector(A xor B)               
-                when Op = std_logic_vector(to_unsigned(4, Op'length)) else
-            R_Assist & Bool_Assist & To_Std_Logic(A = B) 
-                when Op = std_logic_vector(to_unsigned(5, Op'length)) else
-            R_Assist & Bool_Assist & To_Std_Logic(A < B)
-                when Op = std_logic_vector(to_unsigned(6, Op'length)) else
-            R_Assist & (A rol natural(to_integer(unsigned(B))))
-                when Op = std_logic_vector(to_unsigned(7, Op'length)) else
-            std_logic_vector(to_signed(0, R'length));  
+    process(A, B, Op)
+    begin
+        case to_integer(unsigned(Op)) is
+            when 0 =>
+                R <= R_Assist & std_logic_vector(signed(A) + signed(B)); 
+            when 1 =>
+                R <= R_Assist & std_logic_vector(not A);
+            when 2 =>
+                R <= R_Assist & std_logic_vector(A and B);
+            when 3 =>
+                R <= R_Assist & std_logic_vector(A or B);
+            when 4 =>
+                R <= R_Assist & std_logic_vector(A xor B);
+            when 5 =>
+                R <= R_Assist & Bool_Assist & To_Std_Logic(A = B);
+            when 6 =>
+                R <= R_Assist & Bool_Assist & To_Std_Logic(A < B);
+            when 7 =>
+                R <= R_Assist & (A rol natural(to_integer(unsigned(B))));
+            when others =>
+                R(R'range) <= (others => '0');
+        end case;
+    end process; 
 
 end behavioral;
 
