@@ -98,18 +98,29 @@ begin
         -- We have to create an arbitraily large number for a string (super annoying)
         variable errorMessage : String(1 to 4096);
         variable result       : Boolean;
+        variable accumulatedResult : Boolean := true;
     begin
 
+    -- Add Test 2 + 3 = 5
     A <= std_logic_vector(to_unsigned(2, A'length));
     B <= std_logic_vector(to_unsigned(3, B'length));
     Op <= std_logic_vector(to_unsigned(0, Op'length));
-
     wait until rising_edge(CLK);
-
     expectedValue := std_logic_vector(to_unsigned(5, R'length));
     result := slvAssert(expectedValue, R, String'(" Add test 1 failed"));
+    accumulatedResult := accumulatedResult and result;
+    
+    -- Add Test Roll over
+    A <= std_logic_vector(to_unsigned(1, A'length));
+    B <= std_logic_vector(to_unsigned(65535, B'length));
+    Op <= std_logic_vector(to_unsigned(0, Op'length));
+    wait until rising_edge(CLK);
+    expectedValue := std_logic_vector(to_unsigned(0, R'length));
+    result := slvAssert(expectedValue, R, String'(" Add test 2 failed"));
+    accumulatedResult := accumulatedResult and result;
 
     -- End the test
+    assert (not accumulatedResult) report "Tests Successful" severity note;
     assert false report "end of test." severity note;
     runTest <= '0';
     -- Wait forever, this will finish the simulation
