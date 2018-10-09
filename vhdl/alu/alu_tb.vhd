@@ -110,7 +110,7 @@ begin
     result := slvAssert(expectedValue, R, String'(" Add test 1 failed"));
     accumulatedResult := accumulatedResult and result;
     
-    -- Add Test Roll over
+    -- Add Test Roll Over 0xFFFF + 0x0001 = 0x0000
     A <= std_logic_vector(to_unsigned(1, A'length));
     B <= std_logic_vector(to_unsigned(65535, B'length));
     Op <= std_logic_vector(to_unsigned(0, Op'length));

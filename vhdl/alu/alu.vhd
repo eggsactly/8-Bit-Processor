@@ -30,8 +30,8 @@ architecture behavioral of alu is
     -- zeros
     constant R_Assist : std_logic_vector(R'length - A'length - 1 downto 0)
         := (others => '0'); 
-    -- R_Assist is used to fill any bits from the length of an input vector with
-    -- the length of a std_vector
+    -- Bool_Assist is used to fill any bits from the length of an input vector 
+    -- with the length of a std_vector
     constant Bool_Assist : std_logic_vector(A'length - 1 downto 0) 
         := (others => '0');
 
