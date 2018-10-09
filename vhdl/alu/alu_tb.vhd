@@ -61,7 +61,7 @@ architecture sim of alu_tb is
     -- Declare signals
     constant Clk_period : time                          := 10 ns;
     signal A, B, R : std_logic_vector(15 downto 0);
-    signal Op : std_logic_vector(2 downto 0);
+    signal Op : std_logic_vector(2 downto 0) := (others => '0');
     signal CLK : std_logic := '1';
     signal runTest : std_logic := '1';
 
