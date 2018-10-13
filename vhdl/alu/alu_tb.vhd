@@ -19,6 +19,9 @@ use IEEE.NUMERIC_STD.ALL;
 
 use std.textio.all; -- Imports the standard textio package.
 
+library processor;
+use processor.processor_package.all;
+
 --  A testbench has no ports.
 entity alu_tb is
 end alu_tb;
@@ -31,34 +34,6 @@ architecture sim of alu_tb is
         R  : out std_logic_vector
     );
     end component;
-
-    -- slvAssert function encapsulates the assertion checking code for standard 
-    -- logic vectors
-    function slvAssert (
-        expected : std_logic_vector;
-        actual   : std_logic_vector;
-        testName : String)
-        return BOOLEAN is
-        variable myLine : line; 
-        -- Strings are not dynamically allocated, so the size 4096 is allocated
-        variable errorMessage : String(1 to 4096);
-    begin
-        write (myLine, String'("Expecting: "));
-        hwrite (myLine, expected);
-        write (myLine, String'(", Got: "));
-        hwrite (myLine, actual);
-        write (myLine, String'(" """));
-        write (myLine, testName);
-        write (myLine, String'(""" failed."));
-        assert myLine'length < errorMessage'length; -- make sure S is big enough
-        if myLine'length > 0 then
-            read(myLine, errorMessage(1 to myLine'length));
-        end if;
-        assert actual = expected report errorMessage severity error;
-
-        return (actual = expected);
-    end slvAssert;
-
 
     -- Declare signals
     constant Clk_period : time                          := 10 ns;
