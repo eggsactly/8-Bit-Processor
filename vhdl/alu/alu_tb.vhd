@@ -193,6 +193,15 @@ begin
     result := slvAssert(expectedValue, R, String'("Lt test 2"));
     accumulatedResult := accumulatedResult and result;
 
+    -- Rol test
+    A <= X"0001";
+    B <= std_logic_vector(to_unsigned(4, B'length));
+    Op <= std_logic_vector(to_unsigned(7, Op'length));
+    wait until rising_edge(CLK);
+    expectedValue := X"0010";
+    result := slvAssert(expectedValue, R, String'("Roll test 1"));
+    accumulatedResult := accumulatedResult and result;
+
     -- End the test
     assert (not accumulatedResult) report "Tests Successful" severity note;
     assert accumulatedResult report "Tests Failed" severity note;
