@@ -130,6 +130,69 @@ begin
     result := slvAssert(expectedValue, R, String'("Not test 1"));
     accumulatedResult := accumulatedResult and result;
 
+    -- And Test 5178 & A389 => 0108  
+    A <= X"5178";
+    B <= X"A389";
+    Op <= std_logic_vector(to_unsigned(2, Op'length));
+    wait until rising_edge(CLK);
+    expectedValue := X"0108";
+    result := slvAssert(expectedValue, R, String'("And test 1"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Or Test 5555 & AAAA => FFFF  
+    A <= X"5555";
+    B <= X"AAAA";
+    Op <= std_logic_vector(to_unsigned(3, Op'length));
+    wait until rising_edge(CLK);
+    expectedValue := X"FFFF";
+    result := slvAssert(expectedValue, R, String'("Or test 1"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Xor Test 55AA & AAAA => FF00  
+    A <= X"55AA";
+    B <= X"AAAA";
+    Op <= std_logic_vector(to_unsigned(4, Op'length));
+    wait until rising_edge(CLK);
+    expectedValue := X"FF00";
+    result := slvAssert(expectedValue, R, String'("Xor test 1"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Comparison test 0001 == 0003 => false
+    A <= X"0001";
+    B <= X"0003";
+    Op <= std_logic_vector(to_unsigned(5, Op'length));
+    wait until rising_edge(CLK);
+    expectedValue := X"0000";
+    result := slvAssert(expectedValue, R, String'("Eq test 1"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Comparison test 0001 == 0001 => true
+    A <= X"0001";
+    B <= X"0001";
+    Op <= std_logic_vector(to_unsigned(5, Op'length));
+    wait until rising_edge(CLK);
+    expectedValue := X"0001";
+    result := slvAssert(expectedValue, R, String'("Eq test 2"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Comparison test 0001 < 0003 => true
+    A <= X"0001";
+    B <= X"0003";
+    Op <= std_logic_vector(to_unsigned(6, Op'length));
+    wait until rising_edge(CLK);
+    expectedValue := X"0001";
+    result := slvAssert(expectedValue, R, String'("Lt test 1"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Comparison test 0001 < 0001 => false
+    A <= X"0001";
+    B <= X"0001";
+    Op <= std_logic_vector(to_unsigned(6, Op'length));
+    wait until rising_edge(CLK);
+    expectedValue := X"0000";
+    result := slvAssert(expectedValue, R, String'("Lt test 2"));
+    accumulatedResult := accumulatedResult and result;
+
     -- End the test
     assert (not accumulatedResult) report "Tests Successful" severity note;
     assert accumulatedResult report "Tests Failed" severity note;
