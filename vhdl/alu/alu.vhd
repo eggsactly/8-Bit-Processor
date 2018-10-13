@@ -32,12 +32,13 @@ architecture behavioral of alu is
         := (others => '0'); 
     -- Bool_Assist is used to fill any bits from the length of an input vector 
     -- with the length of a std_vector
-    constant Bool_Assist : std_logic_vector(A'length - 1 downto 0) 
+    constant Bool_Assist : std_logic_vector(A'length - 2 downto 0) 
         := (others => '0');
 
-    function To_Std_Logic(L: BOOLEAN) return std_ulogic is 
+    function To_Std_Logic(L: BOOLEAN) return std_logic is 
     begin 
-        if L then 
+        
+        if L then  
             return('1'); 
         else 
             return('0'); 
@@ -60,9 +61,9 @@ architecture behavioral of alu is
             when 4 =>
                 R <= R_Assist & std_logic_vector(A xor B);
             when 5 =>
-                R <= R_Assist & Bool_Assist & To_Std_Logic(A = B);
+                R <= R_Assist & Bool_Assist & To_Std_Logic(signed(A) = signed(B));
             when 6 =>
-                R <= R_Assist & Bool_Assist & To_Std_Logic(A < B);
+                R <= R_Assist & Bool_Assist & To_Std_Logic(signed(A) < signed(B));
             when 7 =>
                 R <= R_Assist & (A rol natural(to_integer(unsigned(B))));
             when others =>
