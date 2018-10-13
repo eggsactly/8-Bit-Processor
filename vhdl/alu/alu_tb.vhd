@@ -47,7 +47,9 @@ architecture sim of alu_tb is
         hwrite (myLine, expected);
         write (myLine, String'(", Got: "));
         hwrite (myLine, actual);
+        write (myLine, String'(" """));
         write (myLine, testName);
+        write (myLine, String'(""" failed."));
         assert myLine'length < errorMessage'length; -- make sure S is big enough
         if myLine'length > 0 then
             read(myLine, errorMessage(1 to myLine'length));
@@ -106,8 +108,8 @@ begin
     B <= std_logic_vector(to_unsigned(3, B'length));
     Op <= std_logic_vector(to_unsigned(0, Op'length));
     wait until rising_edge(CLK);
-    expectedValue := std_logic_vector(to_unsigned(5, R'length));
-    result := slvAssert(expectedValue, R, String'(" Add test 1 failed"));
+    expectedValue := std_logic_vector(to_unsigned(6, R'length));
+    result := slvAssert(expectedValue, R, String'("Add test 1"));
     accumulatedResult := accumulatedResult and result;
     
     -- Add Test Roll Over 0xFFFF + 0x0001 = 0x0000
@@ -116,11 +118,12 @@ begin
     Op <= std_logic_vector(to_unsigned(0, Op'length));
     wait until rising_edge(CLK);
     expectedValue := std_logic_vector(to_unsigned(0, R'length));
-    result := slvAssert(expectedValue, R, String'(" Add test 2 failed"));
+    result := slvAssert(expectedValue, R, String'("Add test 2"));
     accumulatedResult := accumulatedResult and result;
 
     -- End the test
     assert (not accumulatedResult) report "Tests Successful" severity note;
+    assert accumulatedResult report "Tests Failed" severity note;
     assert false report "end of test." severity note;
     runTest <= '0';
     -- Wait forever, this will finish the simulation
