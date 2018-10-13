@@ -108,7 +108,7 @@ begin
     B <= std_logic_vector(to_unsigned(3, B'length));
     Op <= std_logic_vector(to_unsigned(0, Op'length));
     wait until rising_edge(CLK);
-    expectedValue := std_logic_vector(to_unsigned(6, R'length));
+    expectedValue := std_logic_vector(to_unsigned(5, R'length));
     result := slvAssert(expectedValue, R, String'("Add test 1"));
     accumulatedResult := accumulatedResult and result;
     
@@ -119,6 +119,15 @@ begin
     wait until rising_edge(CLK);
     expectedValue := std_logic_vector(to_unsigned(0, R'length));
     result := slvAssert(expectedValue, R, String'("Add test 2"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Not Test 5555 => AAAA
+    A <= X"5555";
+    B <= std_logic_vector(to_unsigned(65535, B'length));
+    Op <= std_logic_vector(to_unsigned(1, Op'length));
+    wait until rising_edge(CLK);
+    expectedValue := X"AAAA";
+    result := slvAssert(expectedValue, R, String'("Not test 1"));
     accumulatedResult := accumulatedResult and result;
 
     -- End the test
