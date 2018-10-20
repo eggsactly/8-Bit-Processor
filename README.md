@@ -1,5 +1,10 @@
 # Introduction 
-This goal of this project is to create a model of an 8-Bit processor that can host an operating system. The following processor features will be implemented:
+I made this project to experiment with processor design and to understand topics
+such as paging, segmentation, branch prediction and protection rings. This 
+project demonstrates how an 8-Bit processor can be implemented and does not
+implement any existing architectures.  
+
+The following processor features will be implemented:
 * Basic logical operations (and, or, not, xor)
 * Basic comparison operations (Less-than, Equals)
 * Basic branching operations (jump non-conditional, conditional jump)
