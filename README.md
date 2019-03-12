@@ -67,4 +67,7 @@ The following instruction table is meant to be a short hand of the instructions.
 | 10111111    | Sofware Interrupt 3         | SW3            |                                    |
 | 11DtValu    | Set Value                   | SVL            | REG(Dt) ← 000000000000Valu         |
 
+# Code
+The processor is implemented in VHDL and is stored in the vhdl folder. Each type of component in stored in a folder with the same name as that component. Each folder in vhdl/ is filled with at-least three items, a behavioral implementation of the component, a test bench for the component and a Makefile. The Makefile supports two directives: test and clean. Test runs the test bench and clean removes all intermediate files. 
+
 That's It!
