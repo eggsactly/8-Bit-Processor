@@ -18,6 +18,13 @@ LIBRARY IEEE;
     USE IEEE.NUMERIC_STD.ALL;
     USE IEEE.math_real.ALL;
 
+-- This memory allows up to two memory reads to be done in one cycle.
+-- Memory cells are each 8-bits in size. 
+-- When the wr flag is set high, data in iData is written to addr2 on the rising
+-- edge of clk. 
+-- When rst is set high, all memory will be zeroed out on the rising edge of 
+-- clk.
+
 entity memory is 
 generic (
     -- Number memory cells
