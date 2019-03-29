@@ -117,7 +117,7 @@ begin
     wait until rising_edge(CLK);
 
     rst     <= '0';
-    addr1   <= std_logic_vector(to_unsigned(0, addr1'length));
+    addr1   <= std_logic_vector(to_unsigned(1, addr1'length));
     iData   <= std_logic_vector(to_unsigned(2, iData'length));
     wr      <= '1';
     addr2   <= std_logic_vector(to_unsigned(1, addr2'length));
@@ -130,6 +130,24 @@ begin
     result := slvAssert(expectedValue1, oData1, String'("Rst Test 1 addr1"));
     accumulatedResult := accumulatedResult and result;
     result := slvAssert(expectedValue2, oData2, String'("Rst Test 1 addr2"));
+    accumulatedResult := accumulatedResult and result;    
+
+    wait until rising_edge(CLK);
+
+    rst     <= '0';
+    addr1   <= std_logic_vector(to_unsigned(1, addr1'length));
+    iData   <= std_logic_vector(to_unsigned(2, iData'length));
+    wr      <= '0';
+    addr2   <= std_logic_vector(to_unsigned(1, addr2'length));
+
+    wait until falling_edge(CLK);
+
+    expectedValue1 := std_logic_vector(to_unsigned(2, oData1'length));
+    expectedValue2 := std_logic_vector(to_unsigned(2, oData2'length));
+
+    result := slvAssert(expectedValue1, oData1, String'("Read Test 1 addr1"));
+    accumulatedResult := accumulatedResult and result;
+    result := slvAssert(expectedValue2, oData2, String'("Read Test 1 addr2"));
     accumulatedResult := accumulatedResult and result;    
 
     wait until rising_edge(CLK);
