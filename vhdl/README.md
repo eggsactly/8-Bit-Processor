@@ -6,3 +6,4 @@
 - mux/: contains a 2 in, 1 out mux and unit test
 - register\_file/: contains a register file and unit tests
 - we\_flip\_flop/: stands for write enable flip-flop. Is a flip flop with a write enable line. 
+- instruction\_decode/: contains the entity to decode the instruction.
