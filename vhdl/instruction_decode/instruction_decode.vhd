@@ -29,10 +29,47 @@ end instruction_decode;
 
 architecture behavioral of instruction_decode is 
 begin
+    -- Decoding for ALS
     process(ISTRCT)
     begin
-        -- Put decoding here
-        ALU_Op <= "000";
+        case ISTRCT(7 downto 2) is
+            -- Not
+            when "000001" =>
+                ALU_Op <= "001";
+            -- And
+            when "000010" =>
+                ALU_Op <= "010";
+
+            -- Or
+            when "000011" =>
+                ALU_Op <= "011";
+
+            -- Xor
+            when "000100" =>
+                ALU_Op <= "100";
+
+            -- Add
+            when "000101" =>
+                ALU_Op <= "000";
+
+            -- Compare Equals
+            when "000110" =>
+                ALU_Op <= "101";
+
+            -- Compare less than 
+            when "000111" =>
+                ALU_Op <= "110";
+
+            -- Roll Left
+            when "011100" =>
+                ALU_Op <= "111";
+            when "011101" =>
+                ALU_Op <= "111";
+            when "011110" =>
+                ALU_Op <= "111";
+            when "011111" =>
+                ALU_Op <= "111";
+        end case;
     end process; 
 
 end behavioral;
