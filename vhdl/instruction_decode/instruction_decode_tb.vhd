@@ -75,9 +75,83 @@ begin
         variable errorMessage : String(1 to 4096);
         variable result       : Boolean;
         variable accumulatedResult : Boolean := true;
+        variable ALU_Op_expected : std_logic_vector(2 downto 0);
     begin
 
+
+    wait until rising_edge(CLK);
+
+    -- Not Instruction 
+    ISTRCT <= "00000110";
+    ALU_Op_expected := "001";
+
+    wait until rising_edge(CLK);
+
+    result := slvAssert(ALU_Op_expected, ALU_Op, String'("Not Test"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- And Instruction 
+    ISTRCT <= "00001000";
+    ALU_Op_expected := "010";
     
+    wait until rising_edge(CLK);
+
+    result := slvAssert(ALU_Op_expected, ALU_Op, String'("And Test"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Or Instruction 
+    ISTRCT <= "00001100";
+    ALU_Op_expected := "011";
+    
+    wait until rising_edge(CLK);
+
+    result := slvAssert(ALU_Op_expected, ALU_Op, String'("Or Test"));
+    accumulatedResult := accumulatedResult and result;
+    
+    -- Xor Instruction 
+    ISTRCT <= "00010000";
+    ALU_Op_expected := "100";
+    
+    wait until rising_edge(CLK);
+
+    result := slvAssert(ALU_Op_expected, ALU_Op, String'("Xor Test"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Add Instruction 
+    ISTRCT <= "00010100";
+    ALU_Op_expected := "000";
+    
+    wait until rising_edge(CLK);
+
+    result := slvAssert(ALU_Op_expected, ALU_Op, String'("Add Test"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Eq Instruction 
+    ISTRCT <= "00011000";
+    ALU_Op_expected := "101";
+    
+    wait until rising_edge(CLK);
+
+    result := slvAssert(ALU_Op_expected, ALU_Op, String'("Eq Test"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Lt Instruction 
+    ISTRCT <= "00011100";
+    ALU_Op_expected := "110";
+    
+    wait until rising_edge(CLK);
+
+    result := slvAssert(ALU_Op_expected, ALU_Op, String'("Lt Test"));
+    accumulatedResult := accumulatedResult and result;
+
+    -- Lt Instruction 
+    ISTRCT <= "01110000";
+    ALU_Op_expected := "111";
+    
+    wait until rising_edge(CLK);
+
+    result := slvAssert(ALU_Op_expected, ALU_Op, String'("Rol Test"));
+    accumulatedResult := accumulatedResult and result;
 
     -- End the test
     assert (not accumulatedResult) report "Tests Successful" severity note;
