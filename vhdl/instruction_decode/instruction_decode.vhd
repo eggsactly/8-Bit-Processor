@@ -32,7 +32,7 @@ begin
     -- Decoding for ALS
     process(ISTRCT)
     begin
-        case ISTRCT(7 downto 2) is
+        case (ISTRCT(7 downto 2)) is
             -- Not
             when "000001" =>
                 ALU_Op <= "001";
@@ -69,6 +69,8 @@ begin
                 ALU_Op <= "111";
             when "011111" =>
                 ALU_Op <= "111";
+            when others =>
+                ALU_Op <= "001";
         end case;
     end process; 
 
