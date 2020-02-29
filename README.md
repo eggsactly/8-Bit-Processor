@@ -55,7 +55,7 @@ The following instruction table is meant to be a short hand of the instructions.
 | 10110011    | Set DE (real)               | SDE (real)     | A  → DE                            |
 | 10110100    | Set SS (real)               | SSS (real)     | A  → SS                            |
 | 10110101    | Set SE (real)               | SSE (real)     | A  → SE                            |
-| 10110110    | Not Used                    |                |                                    |
+| 10110110    | Roll Accumlator left 4 bits | RA4            | REG(A) << 4                        |
 | 10110111    | Get Amount of Memory        | GAM            | A  ← Max(MEM)                      |
 | 10111000    | Not Used                    |                |                                    |
 | 10111001    | Not Used                    |                |                                    |
