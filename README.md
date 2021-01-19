@@ -44,6 +44,7 @@ The first two bits of the opcode indicate the length of the instruction. This is
 | 000110xx | Not Used                    |                |                                          |
 | 000111xx | Not Used                    |                |                                          |
 | 0010CnGt | Conditional Jump            | CJP            | if[REG(Cn) != 0] then REG(Gt) → PC       |
+| 0011xxxx | Not Used                    |                |                                          |
 
 2-Byte Instructions:
 | Code              | Operation                   | Short Name     | Equation                                                              |
